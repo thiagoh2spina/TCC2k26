@@ -1,0 +1,327 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Lista de Materiais do Laminador</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: ficha técnica de oficina — cabeçalho com carimbo de revisão, filtro por situação, tabelas por categoria que viram cartões no celular */
+:root{
+  --bg:#f4f5f3; --surface:#ffffff; --fg:#1d2226; --muted:#5d666d; --rule:#d9ddd8; --rule-strong:#b9c0bb;
+  --accent:#b8580b; --accent-soft:#fbeadb;
+  --s-posse:#2f6b3a; --s-posse-bg:#e1efe3;
+  --s-comprar:#9a4a06; --s-comprar-bg:#fbe7d3;
+  --s-conf:#285a8c; --s-conf-bg:#dde8f4;
+  --s-conferir:#5d4a8a; --s-conferir-bg:#e9e3f5;
+  --s-opc:#5d666d; --s-opc-bg:#eceeec;
+  --s-pend:#a2342d; --s-pend-bg:#f7dfdc;
+  --f-display:"Barlow Semi Condensed","Arial Narrow",Arial,sans-serif;
+  --f-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#141719; --surface:#1c2023; --fg:#e4e7e5; --muted:#9aa3a0; --rule:#2e3437; --rule-strong:#454d50;
+  --accent:#f0954a; --accent-soft:#3a2615;
+  --s-posse:#8fd19b; --s-posse-bg:#1f3324;
+  --s-comprar:#f3b27a; --s-comprar-bg:#3d2714;
+  --s-conf:#93bde8; --s-conf-bg:#1b2b3d;
+  --s-conferir:#c2b2ea; --s-conferir-bg:#2a2340;
+  --s-opc:#aab3b0; --s-opc-bg:#262b2e;
+  --s-pend:#f1a29b; --s-pend-bg:#3d1f1c;
+  color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#141719; --surface:#1c2023; --fg:#e4e7e5; --muted:#9aa3a0; --rule:#2e3437; --rule-strong:#454d50;
+  --accent:#f0954a; --accent-soft:#3a2615;
+  --s-posse:#8fd19b; --s-posse-bg:#1f3324;
+  --s-comprar:#f3b27a; --s-comprar-bg:#3d2714;
+  --s-conf:#93bde8; --s-conf-bg:#1b2b3d;
+  --s-conferir:#c2b2ea; --s-conferir-bg:#2a2340;
+  --s-opc:#aab3b0; --s-opc-bg:#262b2e;
+  --s-pend:#f1a29b; --s-pend-bg:#3d1f1c;
+  color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:16px/1.5 var(--f-body);margin:0}
+.wrap{max-width:1080px;margin:0 auto;padding-block:32px 64px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:flex;flex-direction:column;gap:28px}
+header{display:flex;flex-direction:column;gap:10px;border-bottom:2px solid var(--fg);padding-bottom:18px}
+.carimbo{font:500 12px/1.4 var(--f-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 18px}
+.carimbo b{color:var(--accent);font-weight:500}
+h1{font:700 clamp(30px,5vw,44px)/1.05 var(--f-display);margin:0;text-wrap:balance;letter-spacing:.005em}
+.lead{max-width:68ch;color:var(--muted);margin:0}
+h2{font:600 22px/1.2 var(--f-display);margin:0;letter-spacing:.01em;text-wrap:balance}
+h3{font:600 17px/1.2 var(--f-display);margin:0;letter-spacing:.02em;text-transform:uppercase}
+.painel{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.filtro{appearance:none;border:1px solid var(--rule-strong);background:var(--surface);color:var(--fg);border-radius:6px;padding:10px 12px;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:2px;font:inherit}
+.filtro .n{font:500 26px/1 var(--f-mono);font-variant-numeric:tabular-nums}
+.filtro .l{font-size:13px;color:var(--muted)}
+.filtro[aria-pressed="true"]{border-color:var(--fg);box-shadow:inset 0 -3px 0 var(--accent)}
+.filtro:focus-visible,.marca:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.nota{font-size:13px;color:var(--muted);margin:0}
+.caixa{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.caixa ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.caixa.destaque{border-left:4px solid var(--accent);border-radius:0 6px 6px 0}
+section.cat{display:flex;flex-direction:column;gap:10px}
+.cat-cab{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.cat-cab .cod{font:500 13px var(--f-mono);color:var(--accent)}
+.cat-cab .qt{font:400 13px var(--f-mono);color:var(--muted);margin-left:auto}
+.tabela{background:var(--surface);border:1px solid var(--rule);border-radius:6px;overflow:hidden}
+.linha{display:grid;grid-template-columns:34px minmax(0,1.5fr) 74px 118px minmax(0,1.6fr);gap:12px;padding:11px 14px;border-top:1px solid var(--rule);align-items:start}
+.linha:first-child{border-top:0}
+.linha.cab{background:var(--bg);font:600 12px/1.3 var(--f-body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted);padding-block:8px}
+.item{font-weight:600;display:flex;gap:8px;align-items:baseline}
+.spec{font-size:14px;color:var(--muted);margin-top:2px}
+.qtd{font:500 15px/1.4 var(--f-mono);font-variant-numeric:tabular-nums}
+.porque{font-size:14.5px}
+.chip{display:inline-block;font:600 12px/1 var(--f-body);letter-spacing:.03em;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.st-posse{color:var(--s-posse);background:var(--s-posse-bg)}
+.st-comprar{color:var(--s-comprar);background:var(--s-comprar-bg)}
+.st-confeccionar{color:var(--s-conf);background:var(--s-conf-bg)}
+.st-conferir{color:var(--s-conferir);background:var(--s-conferir-bg)}
+.st-opcional{color:var(--s-opc);background:var(--s-opc-bg)}
+.st-pendente{color:var(--s-pend);background:var(--s-pend-bg)}
+.marca{width:20px;height:20px;margin:2px 0 0;accent-color:var(--accent);cursor:pointer}
+.linha.feita .item,.linha.feita .spec{text-decoration:line-through;text-decoration-color:var(--muted)}
+.linha.feita{opacity:.6}
+.fio{width:14px;height:14px;border-radius:50%;border:1px solid var(--rule-strong);flex:none;transform:translateY(2px)}
+.duas{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.lista-simples{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+code{font:13.5px var(--f-mono);background:var(--accent-soft);padding:1px 4px;border-radius:3px}
+.vazio{padding:16px;color:var(--muted)}
+@media (max-width:760px){
+  .linha.cab{display:none}
+  .linha{grid-template-columns:30px minmax(0,1fr) auto;grid-template-areas:"m i s" "m q q" "m p p";row-gap:6px}
+  .linha>.c-m{grid-area:m}.linha>.c-i{grid-area:i}.linha>.c-s{grid-area:s}.linha>.c-q{grid-area:q}.linha>.c-p{grid-area:p}
+  .qtd::before{content:"Qtd: ";font-family:var(--f-body);color:var(--muted);font-size:13px}
+}
+@media (prefers-reduced-motion:no-preference){.linha{transition:opacity .15s}}
+</style>
+
+<div class="wrap">
+  <header>
+    <div class="carimbo"><span>TCC · Mini laminador automatizado</span><span>Revisão <b>3</b></span><span>14/10/2026</span><span>Base: elétrica v2 aprovada</span></div>
+    <h1>Lista de Materiais do Laminador</h1>
+    <p class="lead">Tudo o que o projeto inteiro precisa: mecânica, esteira, motores, placa de controle, potência, segurança, sensor, tela, quadro, fios, organização, ferramentas e demonstração. Cada item diz para que serve. Toque num número abaixo para ver só os itens daquela situação.</p>
+  </header>
+
+  <div class="painel" id="painel" role="group" aria-label="Filtrar por situação"></div>
+  <p class="nota">A caixa de marcação ao lado de cada item (separado ou comprado) fica salva só neste navegador. Para o grupo todo, combinem quem compra o quê.</p>
+
+  <div class="caixa destaque">
+    <h3>O que mudou desde a lista anterior</h3>
+    <ul>
+      <li><strong>Saíram:</strong> expansor PCF8574, optoacoplador PC817, módulo de relés de 4 canais (agora 2), motor DC da esteira e o fio de 22 AWG (os poucos trechos de 5 V usam o mesmo 20 AWG, um rolo a menos para comprar).</li>
+      <li><strong>Cabos dos motores:</strong> em vez de fio avulso, cabo pronto para NEMA17, igual ao das impressoras 3D. Encaixa direto no motor sem crimpar conector minúsculo.</li>
+      <li><strong>Entraram itens que faltavam:</strong> mancais dos roletes, do fuso e da esteira, guias do bloco móvel, suportes de todos os motores, placa perfurada com soquetes, relé automotivo com soquete, diodos, conectores de alavanca, barramento de terra, prensa-cabo, ponteiras e canaletas.</li>
+    </ul>
+  </div>
+
+  <div id="categorias" style="display:flex;flex-direction:column;gap:28px"></div>
+
+  <section class="cat">
+    <div class="cat-cab"><span class="cod">12</span><h2>Software e serviços</h2><span class="qt">todos gratuitos</span></div>
+    <div class="caixa">
+      <ul>
+        <li><strong>Arduino IDE 2</strong> com o pacote <em>esp32 by Espressif Systems</em>.</li>
+        <li><strong>Bibliotecas:</strong> AccelStepper; VL53L1X (Pololu); cliente MQTT e ArduinoJson para o WEGnology, com versão exata definida no guia da nuvem. Saem PCF8574, Arduino IoT Cloud e Blynk.</li>
+        <li><strong>Nextion Editor</strong>, para montar e gravar a tela.</li>
+        <li><strong>WEGnology</strong>, plano Sandbox: painel do grupo (controle) e painel público (QR code).</li>
+        <li><strong>Cirkit Designer</strong>, versão gratuita, para o diagrama visual.</li>
+        <li><strong>Wi-Fi de 2,4 GHz</strong> no local da apresentação. O ESP32 não conecta em rede só de 5 GHz: confirmem isso antes do dia.</li>
+      </ul>
+    </div>
+  </section>
+
+  <div class="duas">
+    <section class="cat">
+      <div class="cat-cab"><h2>Não serão usados</h2></div>
+      <div class="caixa">
+        <ul class="lista-simples">
+          <li><strong>Arduino UNO e Mega</strong> (em posse): substituídos pelo ESP32, que tem Wi-Fi e dois núcleos.</li>
+          <li><strong>Botões físicos</strong> (em posse): substituídos pela tela. O único botão físico é o de emergência.</li>
+          <li><strong>CNC Shield V3</strong>: feita para o formato do Arduino UNO, não encaixa no ESP32.</li>
+          <li><strong>DRV8825</strong>: desnecessário, os A4988 em posse atendem.</li>
+          <li><strong>PCF8574, PC817, relé de 4 canais, motor DC, fio 22 AWG</strong>: retirados nesta revisão.</li>
+        </ul>
+      </div>
+    </section>
+    <section class="cat">
+      <div class="cat-cab"><h2>Conferências do grupo antes de comprar</h2></div>
+      <div class="caixa">
+        <ul class="lista-simples">
+          <li>Conector no corpo dos NEMA17 (6 pinos PH2.0 é o mais comum): define o cabo pronto.</li>
+          <li>Diâmetro dos eixos dos roletes, da ponta do fuso e dos tambores: define mancais e acopladores.</li>
+          <li>Se a porca do fuso TR16×4 veio junto.</li>
+          <li>Corrente do disjuntor do quadro (até 10 A).</li>
+          <li>Se a tela Nextion e o cartão microSD já estão em mãos.</li>
+          <li>Guias do bloco móvel: buchas lineares ou rasgo na estrutura.</li>
+          <li>Material de demonstração, depois dos testes.</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+const ST={posse:"Em posse",comprar:"Comprar",confeccionar:"Confeccionar",conferir:"Conferir",opcional:"Opcional",pendente:"Pendente"};
+const CATS=[
+{t:"Estrutura e roletes",it:[
+["Estrutura soldada","Aço SAE 1020","1","posse","Sustenta tudo. É ligada ao terra pelo fio verde-amarelo: é a proteção contra choque, já que o quadro não tem DR."],
+["Rolos laminadores","Bronze, Ø60 × 120 mm","2","posse","Esmagam a massa até a espessura desejada. O de baixo é fixo e o de cima sobe e desce."],
+["Mancal com rolamento dos roletes","Tipo pedestal (pillow block), furo igual ao eixo dos roletes","4","conferir","Dois por rolete. Mantêm os roletes alinhados e girando com pouco atrito, para o motor gastar força com a massa e não com o eixo."],
+["Fuso trapezoidal com porca","TR16×4, autotravante","1","posse","Sobe e desce o rolete de cima. Por ser autotravante, não desce sozinho com o motor desligado. Confiram se a porca veio junto."],
+["Mancal do fuso","Rolamento no topo do fuso, furo igual à ponta do fuso","1","conferir","A massa empurra o rolete de cima para cima. O mancal recebe essa força; sem ele, ela iria para dentro do motor M3 e o desgastaria."],
+["Bloco móvel","Travessa que leva o rolete de cima, a porca do fuso e o motor M2","1","confeccionar","É a peça que sobe e desce. Precisa ser rígida para o rolete não entortar sob a força da laminação."],
+["Guias do bloco móvel","2 eixos retificados Ø8 mm + 4 buchas lineares LM8UU, ou rasgos guia na estrutura","1 conj.","pendente","Mantêm o rolete de cima paralelo ao de baixo em todo o curso. Sem guia, a massa sairia mais grossa de um lado."],
+["Acoplador flexível","Furo de 5 mm (motor) × diâmetro do eixo movido","4","comprar","Um por motor (M1, M2, M3, M4). Liga o eixo do motor ao eixo do rolete, do fuso ou do tambor e absorve pequenos desalinhamentos da montagem."],
+["Suporte em L para NEMA17","Aço ou alumínio, furação padrão NEMA17","4","comprar","Fixa cada motor alinhado ao seu eixo. O do M2 vai parafusado no bloco móvel e sobe e desce com ele."],
+["Chapa de entrada","Chapa lisa antes dos roletes","1","confeccionar","Apoia a massa e a guia reta até os roletes."],
+["Lâmina raspadora","Lâmina fina encostada em cada rolete, do lado da saída","2","opcional","Só se a massa grudar nos testes: descola a massa do rolete antes que ela dê a volta junto."]
+]},
+{t:"Esteira",it:[
+["Tambor motriz","Ø25 a 30 mm, comprimento igual à largura da correia","1","confeccionar","Puxa a correia, ligado ao motor M4. O diâmetro final (com a correia) vai para o código, porque define a velocidade da esteira."],
+["Tambor tensor","Mesmo diâmetro do motriz","1","confeccionar","Na outra ponta da esteira. É ele que se move para esticar a correia."],
+["Eixo dos tambores","Aço Ø8 mm","2","comprar","Um por tambor."],
+["Mancal com rolamento dos tambores","Flange KFL08 (eixo de 8 mm)","4","comprar","Dois por tambor. Os do tambor tensor ficam em furo alongado, para correr e esticar a correia."],
+["Correia","Lisa, silicone ou PVC atóxico, mais larga que a massa","1","comprar","Leva a massa para longe dos roletes, passando sob o sensor. Comprimento medido na montagem, com os tambores no lugar."],
+["Parafuso de tensionamento","M6 com porca e arruela","2","comprar","Um de cada lado do tambor tensor, para esticar a correia por igual e ela não escapar para um lado."],
+["Chapa de apoio sob a correia","Acrílico ou alumínio, na zona do sensor","1","confeccionar","Impede a correia de ceder com o peso da massa. Se cedesse, o zero do sensor mudaria e a medida sairia errada."]
+]},
+{t:"Motores e drivers",it:[
+["Motor de passo","NEMA17 17HS4401, 4,2 kgf·cm","4","posse","M1 rolete de baixo, M2 rolete de cima, M3 fuso, M4 esteira. Anda um ângulo exato a cada pulso, o que permite medir a posição do fuso sem sensor."],
+["Cabo pronto para NEMA17","1 m, conector de 6 pinos PH2.0 (motor) e XH2.54 de 4 pinos (placa)","4","comprar","Liga o motor ao driver sem crimpar conector. Antes de encaixar, confirmem as bobinas com o multímetro: a ordem dos fios muda de fabricante para fabricante."],
+["Driver de motor de passo","A4988","4","posse","Recebe os pulsos de 3,3 V do ESP32 e entrega a corrente às bobinas, limitada em 1,2 A (0,8 A na esteira)."],
+["Driver reserva","A4988","2","comprar","Clones queimam com facilidade, por exemplo ao soltar um motor com a energia ligada. Sem reserva, a máquina para."],
+["Dissipador para A4988","Alumínio, com adesivo térmico","4","conferir","A 1,2 A o chip esquenta e se desliga sozinho no meio da operação. Costuma vir junto com o driver."],
+["Capacitor eletrolítico","100 µF / 50 V","4","comprar","Um por driver, entre VMOT e GND. Absorve o pico de tensão do momento em que a energia é ligada, que queimaria o driver."],
+["Ventoinha","5 V, 40 × 40 mm","1","comprar","Sopra sobre os quatro drivers e mantém todos frios."]
+]},
+{t:"Placa de controle",it:[
+["Microcontrolador","ESP32 DevKit V1 (ESP32-WROOM-32 ou 32E), 30 pinos. Não comprar S3, C3 nem C6","1","comprar","Cérebro da máquina: pulsos dos motores, sensor, tela, emergência e Wi-Fi para a nuvem."],
+["ESP32 reserva","Mesmo modelo","1","opcional","Para o projeto não parar se o principal queimar."],
+["Placa perfurada","Ilhada, 10 × 15 cm","1","comprar","Reúne ESP32, os quatro drivers, capacitores e resistor numa placa só, com fios soldados, em vez de dezenas de jumpers soltos que afrouxam com a vibração."],
+["Barra de pinos fêmea","1 × 40, passo 2,54 mm","3","comprar","Soquetes do ESP32 e dos drivers na placa. Uma peça queimada é trocada sem dessoldar."],
+["Barra de pinos macho","1 × 40, passo 2,54 mm","1","comprar","Pontos de ligação dos fios que saem da placa: sensor, tela, fim de curso, botão de emergência e relés."],
+["Conector de placa XH2.54","4 pinos, macho","4","comprar","Encaixe dos cabos prontos dos motores na placa."],
+["Borne de placa","KF301, 2 vias, de parafuso","2","comprar","Entrada do 24 V protegido (B2) e do 5 V na placa, com fio mais grosso que um pino comum aguentaria."],
+["Resistor","10 kΩ, 1/4 W","1","comprar","Leitura da emergência no GPIO 34, que não tem resistor interno. Sem ele, a leitura ficaria aleatória."],
+["Jumpers Dupont","Fêmea-fêmea, 20 cm","1 pct.","conferir","Fios de sinal entre a placa e os módulos. Vocês já têm jumpers: confiram a quantidade."]
+]},
+{t:"Potência, segurança e sinalização",it:[
+["Fonte chaveada","24 V, 5 A (120 W), entrada 127/220 V","1","comprar","Gera o 24 V de toda a máquina. Antes de ligar, conferir a chave 110/220 V na lateral, se houver."],
+["Conversor step-down","24 V para 5 V, LM2596 (3 A) ou XL4015 (5 A)","1","comprar","Alimenta ESP32, tela, relés e ventoinha. Ajustar para 5,0 V com multímetro antes de ligar qualquer coisa nele."],
+["Relé de segurança RL1","Automotivo 24 V, 5 terminais (30, 85, 86, 87, 87a), 30 A ou mais","1","comprar","Corta o 24 V dos motores quando o botão de emergência é apertado, sem passar pelo ESP32. Nas lojas: “relé auxiliar 24 V 5 terminais”, linha caminhão."],
+["Soquete do relé","Para relé automotivo de 5 terminais, com fios","1","comprar","Liga o RL1 sem solda e permite trocar o relé."],
+["Módulo relé","2 canais, bobina 5 V, com optoacoplador, de preferência com jumper JD-VCC","1","comprar","Canal 1 é o RL2: liga e desliga a energia dos motores (LIGAR/DESLIGAR). Canal 2 acende a sinaleira verde."],
+["Diodo","1N4007","3 (compre 10)","comprar","D1 em paralelo com a bobina do RL1 (absorve o pico ao desligar). D2 e D3 juntam os dois caminhos da sinaleira vermelha."],
+["Botão de emergência","Cogumelo 22 mm, com trava (gira para soltar), 2 contatos NF","1","comprar","O contato NF 1 corta o RL1; o NF 2 avisa o ESP32. Se vier com um só NF, comprar um bloco de contato NF extra, de encaixe."],
+["Sinaleira LED","22 mm, 24 V","3","comprar","Vermelha: desligado. Amarela: ligado. Verde: rodando."],
+["Chave fim de curso","Microswitch com alavanca (tipo KW11), terminais COM, NO e NC","1","comprar","Marca o zero do rolete de cima. Ligada como NC: se o fio romper, o programa entende como chave acionada e para o fuso."],
+["Conector de alavanca","Wago 221-415 (5 vias)","6","comprar","Barramentos B1, B2 (duas peças), 5 V e terra da estrutura, mais 1 reserva. Junta vários fios num ponto, sem solda e sem afrouxar."],
+["Barramento de terra","Barra de neutro/terra para quadro, 12 furos","1","comprar","GND em estrela: todos os 0 V da máquina num único ponto, para os sinais entre as placas não sofrerem interferência da corrente dos motores."]
+]},
+{t:"Sensor e interface",it:[
+["Sensor de distância","VL53L1X, placa breakout","1","comprar","Mede a distância até a massa na esteira. Confere, de forma independente, a espessura calculada pelo fuso."],
+["Suporte do sensor","Braço rígido 60 a 100 mm acima da correia, 2 parafusos M2","1","confeccionar","Mantém o sensor fixo e apontado a 90° para a correia. Se ele balançar, a medida balança junto."],
+["Tela touch","Nextion NX4827T043_011","1","conferir","Comando local: ligar, desligar, rodar, calibrar, alvo e leituras."],
+["Cartão microSD","Até 32 GB, formatado em FAT32","1","conferir","Grava o projeto montado no Nextion Editor dentro da tela."],
+["Painel frontal","Chapa ou caixa com recorte para a tela e 4 furos de 22 mm","1","confeccionar","Reúne tela, botão de emergência e as três sinaleiras à vista e ao alcance do operador."]
+]},
+{t:"Quadro e entrada de energia",it:[
+["Quadro elétrico móvel com disjuntor","Disjuntor de até 10 A: 1 polo em 127 V, 2 polos em 220 V entre fases","1","posse","Liga e desliga tudo e protege o cabo contra curto. Confiram a corrente do disjuntor."],
+["Plugue","2P+T, 10 A, padrão brasileiro","1","comprar","Liga a máquina na tomada, já com o pino de terra."],
+["Cabo PP","3 × 1,0 mm²","2 m","comprar","Da tomada ao quadro. Tem capa dupla, próprio para equipamento que é movido."],
+["Prensa-cabo","PG9","1","comprar","Prende o cabo PP na entrada do quadro: um puxão no cabo não arranca as ligações de dentro."],
+["Fio flexível","1,0 mm², preto","1 m","comprar","Do disjuntor à fonte (fase).",null,"#1b1b1b"],
+["Fio flexível","1,5 mm², verde-amarelo","2 m","comprar","Terra da fonte e da estrutura de aço.",null,"#6a9a2a"],
+["Terminal olhal","1,5 mm², com parafuso e arruela dentada","1","comprar","Prende o terra na estrutura. A arruela dentada rompe a tinta e garante o contato com o aço."]
+]},
+{t:"Fios de corrente contínua",nota:"Fio flexível (cabinho). Se não acharem 26 AWG, 24 AWG serve. As metragens já têm folga; os comprimentos finais saem da organização física.",it:[
+["Fio 18 AWG vermelho","Troncos de 24 V","1 m","comprar","Fonte ao B1, B1 ao RL1, RL1 ao RL2 e RL2 ao B2: somam a corrente de todos os motores.",null,"#c62828"],
+["Fio 18 AWG preto","Tronco do GND","1 m","comprar","Fonte ao barramento de terra.",null,"#1b1b1b"],
+["Fio 20 AWG vermelho","Ramais de 24 V","4 m","comprar","VMOT dos drivers, botão de emergência, bobina do RL1 e sinaleiras.",null,"#c62828"],
+["Fio 20 AWG preto","Retornos de 24 V e 5 V","4 m","comprar","Negativos de drivers, sinaleiras, conversor, tela e relés.",null,"#1b1b1b"],
+["Fio 20 AWG laranja","5 V","1 m","comprar","Do conversor ao ESP32, à tela, ao módulo relé e à ventoinha.",null,"#ef7d1a"],
+["Fio 26 AWG amarelo","3,3 V","1 m","comprar","Lógica dos drivers, microstepping, sensor e resistor da emergência.",null,"#f2c200"],
+["Fio 26 AWG preto","GND de sinais","2 m","comprar","Referência dos sinais, trançado com SDA e SCL no cabo do sensor.",null,"#1b1b1b"],
+["Fio 26 AWG azul","STEP","1 m","comprar","Um por motor.",null,"#1f5fbf"],
+["Fio 26 AWG verde","DIR","1 m","comprar","Um por motor.",null,"#2e8b3e"],
+["Fio 26 AWG roxo","Controle e segurança","2 m","comprar","ENABLE, emergência, fim de curso e comando dos relés.",null,"#7b3fa6"],
+["Fio 26 AWG branco","SDA do sensor","1 m","comprar","Dados do I2C.",null,"#f4f4f4"],
+["Fio 26 AWG cinza","SCL do sensor","1 m","comprar","Relógio do I2C.",null,"#8a8f93"],
+["Fio 26 AWG marrom","Serial da tela","1 m","comprar","TX e RX. Marquem as duas pontas para não inverter.",null,"#7a4a22"]
+]},
+{t:"Organização e fixação",it:[
+["Canaleta plástica","20 × 20 mm","2 m","comprar","Separa os três grupos de cabos (AC, potência e sinal), para o ruído dos motores não chegar aos sinais."],
+["Abraçadeira de nylon","100 mm e 200 mm","1 pct. de cada","comprar","Amarra os feixes e o laço de folga do cabo do M2."],
+["Base adesiva para abraçadeira","20 × 20 mm","10","comprar","Fixa os feixes e o laço do M2 na estrutura e no bloco móvel."],
+["Espaguete termorretrátil","Kit sortido","1","comprar","Isola emendas, soldas e as pernas dos diodos."],
+["Ponteira tubular (ilhós)","Kit de 0,5 a 1,5 mm²","1","comprar","Vai na ponta de todo fio flexível preso em borne de parafuso. Sem ela, os fios finos se abrem e o fio se solta."],
+["Parafusos M3","8 e 10 mm, com porcas e espaçadores","1 kit","comprar","Quatro por motor (16 no total) e fixação da placa perfurada."],
+["Etiquetas de identificação","Anilha ou fita para escrever","1","comprar","Marcar as pontas dos fios (TX/RX, B1/B2, M1 a M4)."]
+]},
+{t:"Ferramentas",nota:"Provavelmente disponíveis na sala de materiais do SENAI.",it:[
+["Multímetro","Tensão, resistência e continuidade","1","conferir","Ajuste do Vref, conferência do 24 V e do 5 V, identificação das bobinas dos motores."],
+["Paquímetro","Digital","1","conferir","Medir a folga no fim de curso (GAP_HOME_MM) e a espessura nos testes."],
+["Jogo de lâminas de folga","0,05 a 1,0 mm","1","conferir","Conferência da posição do fuso (teste T3)."],
+["Ferro de solda","Com estanho e sugador","1","conferir","Montagem da placa perfurada."],
+["Alicates","Decapador, de corte e crimpador de ponteira","1 de cada","conferir","Preparar as pontas dos fios e crimpar as ponteiras."],
+["Chaves","Fenda, Phillips e Allen pequenas","1 jogo","conferir","Bornes, trimpots dos drivers e parafusos dos acopladores (Allen)."],
+["Soprador térmico","Ou isqueiro","1","conferir","Encolher o termorretrátil."],
+["Computador e cabo USB","Cabo conforme o ESP32 (micro-USB ou USB-C)","1","conferir","Programar o ESP32 e gravar a tela."]
+]},
+{t:"Demonstração",it:[
+["Material de demonstração","Massa de modelar de escultura grau duro, ou massa polimérica","—","pendente","O grupo escolhe nos testes. Depois disso é medido o fator k (teste T4)."],
+["Desmoldante","Talco ou amido de milho","1","comprar","Reduz a aderência da massa nos roletes."],
+["Cartaz com QR code","Impresso, A4","1","confeccionar","Leva o público ao painel público do WEGnology."]
+]}
+];
+
+const chave=(c,i)=>"lam-bom-"+c+"-"+i;
+function lerMarca(k){try{return localStorage.getItem(k)==="1"}catch(e){return false}}
+function gravarMarca(k,v){try{v?localStorage.setItem(k,"1"):localStorage.removeItem(k)}catch(e){}}
+
+const cont=document.getElementById("categorias");
+CATS.forEach((cat,ci)=>{
+  const sec=document.createElement("section");sec.className="cat";sec.dataset.cat=ci;
+  const n=String(ci+1).padStart(2,"0");
+  sec.innerHTML=`<div class="cat-cab"><span class="cod">${n}</span><h2>${cat.t}</h2><span class="qt">${cat.it.length} itens</span></div>`+(cat.nota?`<p class="nota">${cat.nota}</p>`:"");
+  const tab=document.createElement("div");tab.className="tabela";
+  tab.innerHTML=`<div class="linha cab"><span></span><span>Item e especificação</span><span>Qtd</span><span>Situação</span><span>Para que serve</span></div>`;
+  cat.it.forEach((r,ii)=>{
+    const [nome,spec,qtd,st,porque,,cor]=r;
+    const k=chave(ci,ii);
+    const el=document.createElement("div");el.className="linha";el.dataset.st=st;
+    const id="m"+ci+"-"+ii;
+    el.innerHTML=`<span class="c-m"><input type="checkbox" class="marca" id="${id}" aria-label="Marcar ${nome} como separado ou comprado"></span>
+      <div class="c-i"><div class="item">${cor?`<span class="fio" style="background:${cor}"></span>`:""}<label for="${id}">${nome}</label></div><div class="spec">${spec}</div></div>
+      <span class="c-q qtd">${qtd}</span>
+      <span class="c-s"><span class="chip st-${st}">${ST[st]}</span></span>
+      <span class="c-p porque">${porque}</span>`;
+    const cb=el.querySelector("input");cb.checked=lerMarca(k);el.classList.toggle("feita",cb.checked);
+    cb.addEventListener("change",()=>{el.classList.toggle("feita",cb.checked);gravarMarca(k,cb.checked)});
+    tab.appendChild(el);
+  });
+  sec.appendChild(tab);cont.appendChild(sec);
+});
+
+const totais={todos:0};Object.keys(ST).forEach(s=>totais[s]=0);
+document.querySelectorAll(".linha[data-st]").forEach(l=>{totais.todos++;totais[l.dataset.st]++});
+const painel=document.getElementById("painel");
+let ativo="todos";
+[["todos","Todos os itens"],...Object.entries(ST)].forEach(([s,l])=>{
+  if(s!=="todos"&&!totais[s])return;
+  const b=document.createElement("button");b.className="filtro";b.type="button";b.id="f-"+s;
+  b.setAttribute("aria-pressed",s===ativo?"true":"false");
+  b.innerHTML=`<span class="n">${totais[s]}</span><span class="l">${l}</span>`;
+  b.addEventListener("click",()=>aplicar(s));painel.appendChild(b);
+});
+function aplicar(s){
+  ativo=s;
+  painel.querySelectorAll(".filtro").forEach(b=>b.setAttribute("aria-pressed",b.id==="f-"+s?"true":"false"));
+  document.querySelectorAll("section.cat[data-cat]").forEach(sec=>{
+    let vis=0;sec.querySelectorAll(".linha[data-st]").forEach(l=>{const ok=s==="todos"||l.dataset.st===s;l.hidden=!ok;if(ok)vis++});
+    sec.hidden=vis===0;
+  });
+}
+</script>
+
+</body></html>
